@@ -1,0 +1,19 @@
+{% extends "bases/base.html" %}
+{% block content %}
+{{news_detail.title}}
+{{news_detail.link}}
+<div class="card-footer">
+    {% for comment in news_detail.comments.all %}
+        <p>
+            <span class="font-weight-bold">{{ comment.author }}&middot;</span>
+            {{ comment }}
+        </p>
+    {% endfor %}
+    <p> {{ news_detail.likes.count }} <a href="{{ news_detail.get_like_url }}">Like</a></p>
+    <a class="btn btn-default" href="{% url 'add_comment_to_news' pk=news_detail.pk  %}">Add comment</a>
+        
+
+</div>
+
+
+{% endblock %}
